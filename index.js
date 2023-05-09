@@ -134,6 +134,8 @@ const generateFeed = async () => {
       ],
     });
   }
+  // eslint-disable-next-line max-len
+  feedObject.elements[0].elements[0].elements.reverse();
   return json2xml(feedObject);
 };
 
