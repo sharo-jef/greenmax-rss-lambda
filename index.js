@@ -72,6 +72,8 @@ const generateFeed = async () => {
     }],
   };
   for (const element of [...parse(prevPage.data).querySelectorAll('#contentinner > div.col_box > div.col'), ...parse(lastPage.data).querySelectorAll('#contentinner > div.col_box > div.col')]) {
+    const detailPage = await axios.get(element.querySelector('a').getAttribute('href'));
+    const description = Array.from(parse(detailPage.data).querySelector('div.info_box').childNodes).map(e => e.textContent).join('\n');
     feedObject.elements[0].elements[0].elements.push({
       type: 'element',
       name: 'item',
@@ -105,7 +107,7 @@ const generateFeed = async () => {
           elements: [
             {
               type: 'text',
-              text: 'hoge',
+              text: description,
             },
           ],
         },
