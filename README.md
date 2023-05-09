@@ -1,9 +1,5 @@
-# node-template
+# グリーンマックス 新製品 RSS Feed
 
-Node.js project template
+完成品のみの RSS Feed
 
-## Usage
-
-```bash
-npx degit sharo-jef/node-template YOUR_PROJECT_NAME
-```
+そのまま AWS Lambda にデプロイすれば OK 。 (関数 URL を有効化する必要あり)
