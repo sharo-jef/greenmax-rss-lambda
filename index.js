@@ -121,6 +121,16 @@ const generateFeed = async () => {
             },
           ],
         },
+        {
+          type: 'element',
+          name: 'image',
+          elements: [
+            {
+              type: 'text',
+              text: element.querySelector('.col_thumb > img').getAttribute('src'),
+            },
+          ],
+        },
       ],
     });
   }
