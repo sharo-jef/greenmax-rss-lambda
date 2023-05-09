@@ -1,0 +1,25 @@
+name: Lambda Deploy
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: deploy
+        run: |
+          pip3 install awscli
+          zip -r deploy.zip ./*
+          AWS_ACCESS_KEY_ID='${{ secrets.AWS_ACCESS_KEY_ID }}' AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}' aws lambda update-function-code --region '${{ secrets.AWS_DEFAULT_REGION }}' --function-name greenmax-rss-lambda --zip-file fileb://deploy.zip --publish
