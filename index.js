@@ -34,5 +34,3 @@ export const handler = async () => ({
   statusCode: 200,
   body: await generateFeed(),
 });
-
-console.log(await generateFeed());
